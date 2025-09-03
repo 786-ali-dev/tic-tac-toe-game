@@ -34,6 +34,22 @@ h1 {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+.score-board {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.player-score {
+    padding: 0 15px;
+}
+
 .game-status {
     font-size: 1.5em;
     margin-bottom: 25px;
@@ -118,4 +134,13 @@ h1 {
 .reset-button:active {
     transform: translateY(0);
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.reset-button.reset-score {
+    background: #607D8B; /* Grey for reset score */
+    margin-left: 10px;
+}
+
+.reset-button.reset-score:hover {
+    background: #455A64;
 }
