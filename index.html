@@ -10,6 +10,10 @@
 <body>
     <div class="container">
         <h1>Tic-Tac-Toe</h1>
+        <div class="score-board">
+            <div class="player-score">Player X: <span id="playerX-score">0</span></div>
+            <div class="player-score">Player O: <span id="playerO-score">0</span></div>
+        </div>
         <div id="game-status" class="game-status">Player X's Turn</div>
         <div class="game-board" id="game-board">
             <div class="cell" data-cell-index="0"></div>
@@ -23,6 +27,7 @@
             <div class="cell" data-cell-index="8"></div>
         </div>
         <button id="reset-button" class="reset-button">Reset Game</button>
+        <button id="reset-score-button" class="reset-button reset-score">Reset Scores</button>
     </div>
     <script src="script.js"></script>
 </body>
