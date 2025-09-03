@@ -2,6 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const cells = document.querySelectorAll('.cell');
     const gameStatus = document.getElementById('game-status');
     const resetButton = document.getElementById('reset-button');
+    const resetScoreButton = document.getElementById('reset-score-button');
+    const playerXScoreDisplay = document.getElementById('playerX-score');
+    const playerOScoreDisplay = document.getElementById('playerO-score');
+
     const winningConditions = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
         [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
@@ -11,6 +15,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let gameActive = true;
     let currentPlayer = 'X';
     let gameState = ['', '', '', '', '', '', '', '', '']; // Represents the game board state
+    let playerXScore = 0;
+    let playerOScore = 0;
+
+    // Initialize scores from localStorage if available
+    if (localStorage.getItem('playerXScore')) {
+        playerXScore = parseInt(localStorage.getItem('playerXScore'));
+        playerXScoreDisplay.innerText = playerXScore;
+    }
+    if (localStorage.getItem('playerOScore')) {
+        playerOScore = parseInt(localStorage.getItem('playerOScore'));
+        playerOScoreDisplay.innerText = playerOScore;
+    }
 
     // Function to handle a player's move
     const handleCellClick = (e) => {
@@ -49,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (roundWon) {
             gameStatus.innerHTML = `Player ${currentPlayer} Wins! 🎉`;
             gameActive = false;
+            updateScore(currentPlayer);
             return;
         }
 
@@ -63,13 +80,26 @@ document.addEventListener('DOMContentLoaded', () => {
         handlePlayerChange();
     };
 
+    // Function to update scores
+    const updateScore = (winner) => {
+        if (winner === 'X') {
+            playerXScore++;
+            playerXScoreDisplay.innerText = playerXScore;
+            localStorage.setItem('playerXScore', playerXScore);
+        } else if (winner === 'O') {
+            playerOScore++;
+            playerOScoreDisplay.innerText = playerOScore;
+            localStorage.setItem('playerOScore', playerOScore);
+        }
+    };
+
     // Function to switch player
     const handlePlayerChange = () => {
         currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
         gameStatus.innerHTML = `Player ${currentPlayer}'s Turn`;
     };
 
-    // Function to reset the game
+    // Function to reset the game board
     const resetGame = () => {
         gameActive = true;
         currentPlayer = 'X';
@@ -81,7 +111,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    // Function to reset scores
+    const resetScores = () => {
+        playerXScore = 0;
+        playerOScore = 0;
+        playerXScoreDisplay.innerText = playerXScore;
+        playerOScoreDisplay.innerText = playerOScore;
+        localStorage.setItem('playerXScore', 0);
+        localStorage.setItem('playerOScore', 0);
+        resetGame(); // Also reset the game board when scores are reset
+    };
+
     // Event Listeners
     cells.forEach(cell => cell.addEventListener('click', handleCellClick));
     resetButton.addEventListener('click', resetGame);
+    resetScoreButton.addEventListener('click', resetScores);
 });
