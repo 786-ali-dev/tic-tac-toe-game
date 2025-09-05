@@ -3,19 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic-Tac-Toe</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1>Tic-Tac-Toe</h1>
-        <div class="score-board">
-            <div class="player-score">Player X: <span id="playerX-score">0</span></div>
-            <div class="player-score">Player O: <span id="playerO-score">0</span></div>
-        </div>
-        <div id="game-status" class="game-status">Player X's Turn</div>
-        <div class="game-board" id="game-board">
+        <h1>Tic Tac Toe</h1>
+        <div class="status">Player X's Turn</div>
+        <div class="game-grid">
             <div class="cell" data-cell-index="0"></div>
             <div class="cell" data-cell-index="1"></div>
             <div class="cell" data-cell-index="2"></div>
@@ -26,8 +22,7 @@
             <div class="cell" data-cell-index="7"></div>
             <div class="cell" data-cell-index="8"></div>
         </div>
-        <button id="reset-button" class="reset-button">Reset Game</button>
-        <button id="reset-score-button" class="reset-button reset-score">Reset Scores</button>
+        <button class="reset-button">Reset Game</button>
     </div>
     <script src="script.js"></script>
 </body>
